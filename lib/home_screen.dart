@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'mywebview.dart';
+
 class homescreen extends StatefulWidget {
   const homescreen({super.key});
 
@@ -12,13 +14,13 @@ class _homescreenState extends State<homescreen> {
 
   void searchOrNavigate() {
     String query = _controller.text.trim();
-    Uri? uri = Uri.tryParse(query);
+    //Uri? uri = Uri.tryParse(query);
     bool isUrl = Uri.parse(query).isAbsolute;
 
     if (!isUrl) {
       query= 'http://www.google.com?q=$query';
     }
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => MyWebView(url: query)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MyWebView(url: query)));
   }
 
   @override
@@ -39,8 +41,8 @@ class _homescreenState extends State<homescreen> {
         const SizedBox(height: 30,),
         SizedBox(width: 200, height: 50,
         child: 
-        ElevatedButton(onPressed: searchOrNavigate, child: Text("GO", style: TextStyle(fontSize: 18),),
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo, foregroundColor: Colors.white),)
+        ElevatedButton(onPressed: searchOrNavigate,
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo, foregroundColor: Colors.white), child: const Text("GO", style: TextStyle(fontSize: 18),),)
     ),],),),
 
     );
